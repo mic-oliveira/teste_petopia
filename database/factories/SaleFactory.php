@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,6 @@ class SaleFactory extends Factory
     {
         return [
             'discount' => $this->faker->numberBetween(0,1000),
-
         ];
     }
 }

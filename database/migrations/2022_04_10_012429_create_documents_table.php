@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('type',[1,2]);
             $table->string('document');
             $table->foreignId('customer_id')->constrained('customers');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

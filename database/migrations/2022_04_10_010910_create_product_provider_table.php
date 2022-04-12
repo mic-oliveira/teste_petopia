@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('provider_id')->constrained('providers');
+            $table->string('provider_code');
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('fu_shortname');
             $table->integer('fu_code')->nullable()->comment('STATE CODE BR');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->string('code')->comment('IBGE CODE FROM BR CITIES');
             $table->string('zipcode')->nullable();
             $table->foreignId('state_id')->constrained('states');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

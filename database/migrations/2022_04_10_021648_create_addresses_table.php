@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('public_place');
             $table->string('number');
-            $table->string('complement');
+            $table->string('complement')->nullable();
             $table->string('zipcode');
             $table->string('neighborhood');
             $table->foreignId('city_id')->constrained('cities');
+            $table->morphs('addressable');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Customer;
+use App\Models\Product;
+use App\Models\Sale;
 use Illuminate\Database\Seeder;
 
 class SaleSeeder extends Seeder
@@ -14,6 +16,7 @@ class SaleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Sale::factory()->for(Customer::factory(), 'customer')
+            ->hasAttached(Product::factory()->count(2), ['sold_price' => 5000],'product_sold')->create();
     }
 }
