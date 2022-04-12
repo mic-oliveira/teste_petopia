@@ -14,7 +14,7 @@ uses(TestCase::class, RefreshDatabase::class);
 test('should delete customer', function ($id) {
     $result = DeleteCustomer::run($id);
     expect($result->id)->toBe($id);
-    expect($result->deleted_at)->toBeNull();
+    expect($result->deleted_at)->not->toBeNull();
 })->with([
     1,2,3
 ])->with([

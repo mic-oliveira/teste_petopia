@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->enum('status',[1,2,3,4])->default(1);
             $table->bigInteger('discount')->default(0);
             $table->foreignId('customer_id')->constrained('customers');
             $table->timestamps();

@@ -13,14 +13,20 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
+        'status',
         'discount',
         'customer_id'
     ];
 
     public function totalPrice(): Attribute
     {
+        $totalPrice = 0;
+
+        $this->product_sold->each(function ($product) use (&$totalPrice){
+            $totalPrice += $product->pivot->sold_price * $product->pivot->quantity;
+        });
         return Attribute::make(
-            get: fn() => (int)$this->product_sold()->sum('sold_price')
+            get: fn() => $totalPrice
         );
     }
 
@@ -28,8 +34,9 @@ class Sale extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
     public function product_sold(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_sold', 'sale_id', 'product_id')->withPivot('sold_price');
+        return $this->belongsToMany(Product::class, 'product_sold', 'sale_id', 'product_id')->withPivot(['sold_price', 'quantity']);
     }
 }
