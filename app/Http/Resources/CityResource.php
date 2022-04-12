@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AddressResource extends JsonResource
+class CityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,9 @@ class AddressResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
-            "public_place" => $this->public_place,
-            "number" => $this->number,
-            "complement" => $this->complement,
-            "zipcode" => $this->zipcode,
-            "neighborhood" => $this->neighborhood,
-            "city" => CityResource::make($this->city),
+            'id' => $this->id,
+            'city_name' => $this->name,
+            'state_uf' => $this->state->fu_shortname
         ];
     }
 }

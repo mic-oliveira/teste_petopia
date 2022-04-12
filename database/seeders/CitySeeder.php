@@ -5589,13 +5589,13 @@ class CitySeeder extends Seeder
         ];
         if (! App::environment('production')) {
             $cities = [
-                ['state' => 'Rio de Janeiro', 'code' => 3300209, 'name' => 'Araruama'],
+                ['state' => 'Rio de Janeiro', 'code' => 3300209, 'zipcode' => '28970-000', 'name' => 'Araruama'],
                 ['state' => 'Rio de Janeiro', 'code' => 3305505, 'name' => 'Saquarema'],
             ];
         }
         foreach ($cities as $city) {
             $state = State::where('name', '=', $city['state'])->get()->first();
-            $state->cities()->create(['code' => $city['code'], 'name' => mb_strtoupper($city['name'])]);
+            $state->cities()->create(['code' => $city['code'], 'name' => mb_strtoupper($city['name']), 'zipcode' => $city['zipcode'] ?? null]);
         }
     }
 }

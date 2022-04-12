@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('public_place');
             $table->string('number');
             $table->string('complement')->nullable();
-            $table->string('zipcode');
+            $table->string('zipcode')->nullable();
             $table->string('neighborhood');
             $table->foreignId('city_id')->constrained('cities');
             $table->morphs('addressable');
