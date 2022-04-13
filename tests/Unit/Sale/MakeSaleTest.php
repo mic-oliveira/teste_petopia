@@ -9,7 +9,6 @@ use Tests\TestCase;
 uses(TestCase::class, RefreshDatabase::class);
 
 test('should make a sale', function ($sale, $expectedTotal){
-    dump(json_encode($sale));
     $result = MakeSale::run($sale);
     expect($result->total_price)->toBe($expectedTotal);
 })->with([
