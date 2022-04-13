@@ -17,7 +17,8 @@ class ListSales
         return QueryBuilder::for(Sale::class)
             ->with(['customer', 'product_sold'])
             ->allowedFilters([
-                AllowedFilter::partial('customer','customer.name')
+                AllowedFilter::partial('customer_name','customer.name'),
+                AllowedFilter::scope('date_between')
             ])
             ->simplePaginate();
     }
