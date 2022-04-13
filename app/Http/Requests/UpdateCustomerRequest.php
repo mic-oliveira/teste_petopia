@@ -31,8 +31,8 @@ class UpdateCustomerRequest extends FormRequest
             'address.neighborhood' => 'sometimes | required',
             'address.city_id' => 'sometimes | required',
             'document' => 'sometimes | array | required',
-            'document.type' => 'sometimes | array | required',
-            'document.document' => 'sometimes | array | required',
+            'document.type' => 'sometimes  | required',
+            'document.document' => 'sometimes | required',
         ];
     }
 

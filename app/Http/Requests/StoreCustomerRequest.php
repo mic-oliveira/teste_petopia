@@ -30,7 +30,9 @@ class StoreCustomerRequest extends FormRequest
             'address.number' => 'required',
             'address.neighborhood' => 'required',
             'address.city_id' => 'required | exists:cities,id',
-            'document' => 'array | required'
+            'document' => 'array | required',
+            'document.type' => 'required',
+            'document.document' => 'required',
         ];
     }
 
@@ -40,7 +42,9 @@ class StoreCustomerRequest extends FormRequest
             'address.public_place' => 'public place',
             'address.number' => 'number',
             'address.neighborhood' => 'neighborhood',
-            'address.city_id' => 'city id'
+            'address.city_id' => 'city id',
+            'document.type' => 'document type',
+            'document.document' => 'document'
         ];
     }
 
