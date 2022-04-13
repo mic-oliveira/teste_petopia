@@ -24,9 +24,9 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'products' => 'array | required',
+            'products' => 'array | required | min: 1',
             'customer_id' => 'required | exists:customers,id',
-            'status' => 'sometimes | required'
+            'status' => 'sometimes | required',
         ];
     }
 }

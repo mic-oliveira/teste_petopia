@@ -10,7 +10,7 @@ class MakeSale
 {
     use AsAction;
 
-    public function handle($sale)
+    public function handle($sale): Sale
     {
         $createdSale = Sale::create($sale);
         foreach ($sale['products'] as $product) {

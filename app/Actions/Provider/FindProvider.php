@@ -9,7 +9,7 @@ class FindProvider
 {
     use AsAction;
 
-    public function handle(int $id)
+    public function handle(int $id): Provider
     {
         return Provider::findOrFail($id);
     }

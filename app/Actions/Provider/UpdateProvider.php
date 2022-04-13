@@ -2,13 +2,14 @@
 
 namespace App\Actions\Provider;
 
+use App\Models\Provider;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class UpdateProvider
 {
     use AsAction;
 
-    public function handle(array $provider, $id)
+    public function handle(array $provider, $id): Provider
     {
         $updatedProvider = FindProvider::run($id);
         $updatedProvider->fill($provider);

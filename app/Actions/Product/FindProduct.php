@@ -9,7 +9,7 @@ class FindProduct
 {
     use AsAction;
 
-    public function handle(int $id)
+    public function handle(int $id): Product
     {
         return Product::findOrFail($id);
     }
