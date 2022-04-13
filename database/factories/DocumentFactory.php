@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\DocumentTypeEnum;
+use App\Enums\SaleStatusEnum;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +19,7 @@ class DocumentFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomElement([DocumentTypeEnum::CPF, DocumentTypeEnum::CNPJ]),
+            'type' => $this->faker->randomElement([SaleStatusEnum::CPF, SaleStatusEnum::CNPJ]),
             'document' => $this->faker->numerify('#########'),
         ];
     }

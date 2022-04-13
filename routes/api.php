@@ -25,4 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/customers', CustomerController::class);
 Route::resource('/providers', ProviderController::class);
 Route::resource('/products', ProductController::class);
-Route::resource('/sales', SaleController::class)->only('store');
+Route::resource('/sales', SaleController::class)->only('index', 'store');

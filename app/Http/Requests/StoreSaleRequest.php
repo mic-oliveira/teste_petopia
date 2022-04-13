@@ -25,7 +25,8 @@ class StoreSaleRequest extends FormRequest
     {
         return [
             'products' => 'array | required',
-            'customer_id' => 'required'
+            'customer_id' => 'required',
+            'status' => 'sometimes | required'
         ];
     }
 }

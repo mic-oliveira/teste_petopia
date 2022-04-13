@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\DocumentTypeEnum;
+use App\Enums\SaleStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -18,7 +18,7 @@ class Document extends Model
     ];
 
     protected $casts = [
-        'type' => DocumentTypeEnum::class
+        'type' => SaleStatusEnum::class
     ];
 
     public function documentation(): MorphTo
