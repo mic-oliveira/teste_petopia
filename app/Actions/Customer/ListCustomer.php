@@ -14,8 +14,9 @@ class ListCustomer
     public function handle()
     {
         return QueryBuilder::for(Customer::class)
-            ->with(['addressable', 'document'])
+            ->with(['addressable', 'documentation'])
             ->allowedFilters([
+                AllowedFilter::partial('document','documentation.document'),
                 AllowedFilter::partial('name')
             ])->simplePaginate();
     }

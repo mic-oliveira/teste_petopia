@@ -16,6 +16,7 @@ class ListProviders
         return QueryBuilder::for(Provider::class)
             ->with(['addressable', 'documentation'])
             ->allowedFilters([
+                AllowedFilter::partial('document','documentation.document'),
                 AllowedFilter::partial('name')
             ])
             ->simplePaginate();
