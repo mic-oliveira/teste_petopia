@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
@@ -22,7 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/customers', CustomerController::class);
-Route::resource('/providers', ProviderController::class);
-Route::resource('/products', ProductController::class);
-Route::resource('/sales', SaleController::class)->only('index', 'store');
+Route::post('auth', [AuthenticationController::class, 'authenticate']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('/customers', CustomerController::class);
+    Route::resource('/providers', ProviderController::class);
+    Route::resource('/products', ProductController::class);
+    Route::resource('/sales', SaleController::class)->only('index', 'store');
+});
+

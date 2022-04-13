@@ -29,7 +29,7 @@ class StoreProviderRequest extends FormRequest
             'address.public_place' => 'required',
             'address.number' => 'required',
             'address.neighborhood' => 'required',
-            'address.city_id' => 'required',
+            'address.city_id' => 'required | exists:cities,id',
             'document' => 'array | required'
         ];
     }
