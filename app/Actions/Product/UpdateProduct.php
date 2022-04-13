@@ -8,8 +8,11 @@ class UpdateProduct
 {
     use AsAction;
 
-    public function handle()
+    public function handle(array $product, int $id)
     {
-        // ...
+        $updatedProduct = FindProduct::run($id);
+        $updatedProduct->fill($product);
+        $updatedProduct->save();
+        return $updatedProduct->refresh();
     }
 }

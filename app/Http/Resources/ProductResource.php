@@ -15,9 +15,10 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'description' => $this->description,
             'price' => $this->price,
-            'providers' => $this->providers
+            $this->mergeWhen($this->pivot?->sold_price !== null, ['sold_price' => $this->pivot?->sold_price])
         ];
     }
 }

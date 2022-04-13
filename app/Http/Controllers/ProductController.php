@@ -2,64 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Product\CreateProduct;
+use App\Actions\Product\DeleteProduct;
+use App\Actions\Product\FindProduct;
+use App\Actions\Product\ListProducts;
+use App\Actions\Product\UpdateProduct;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): AnonymousResourceCollection
     {
-        //
+        return ProductResource::collection(ListProducts::run());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): ProductResource
     {
-        //
+        return ProductResource::make(CreateProduct::run($request->validated()));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    public function show(Product $product): ProductResource
     {
-        //
+        return ProductResource::make(FindProduct::run($product->id));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product): ProductResource
     {
-        //
+        return ProductResource::make(UpdateProduct::run($request->validated(), $product->id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
+    public function destroy(Product $product): ProductResource
     {
-        //
+        return ProductResource::make(DeleteProduct::run($product->id));
     }
 }
