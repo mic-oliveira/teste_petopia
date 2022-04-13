@@ -13,7 +13,7 @@ class CreateCustomer
     {
         $createdCustomer = Customer::create($customer);
         $createdCustomer->addressable()->create($customer['address']);
-        $createdCustomer->document()->create($customer['document']);
-        return $createdCustomer;
+        $createdCustomer->documentation()->create($customer['document']);
+        return $createdCustomer->refresh();
     }
 }

@@ -21,7 +21,6 @@ class DocumentFactory extends Factory
         return [
             'type' => $this->faker->randomElement([DocumentTypeEnum::CPF, DocumentTypeEnum::CNPJ]),
             'document' => $this->faker->numerify('#########'),
-            'customer_id' => Customer::factory()
         ];
     }
 }

@@ -13,7 +13,7 @@ class UpdateProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,27 @@ class UpdateProviderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'sometimes | required',
+            'address' => 'sometimes | array | required',
+            'address.public_place' => 'sometimes | required',
+            'address.number' => 'sometimes | required',
+            'address.neighborhood' => 'sometimes | required',
+            'address.city_id' => 'sometimes | required',
+            'document' => 'sometimes | array | required',
+            'document.type' => 'sometimes | required',
+            'document.document' => 'sometimes | required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'address.public_place' => 'public place',
+            'address.number' => 'number',
+            'address.neighborhood' => 'neighborhood',
+            'address.city_id' => 'city id',
+            'document.type' => 'document type',
+            'document.document' => 'document'
         ];
     }
 }

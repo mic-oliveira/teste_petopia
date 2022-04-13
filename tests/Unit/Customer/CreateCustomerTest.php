@@ -11,7 +11,7 @@ uses(TestCase::class, RefreshDatabase::class);
 test('should create customer', function ($customer){
     $result = CreateCustomer::run($customer);
     expect($result->name)->toBe('Teste');
-    expect($result->document->document)->toBe('999999');
+    expect($result->documentation->document)->toBe('999999');
     expect($result->addressable->zipcode)->toBe('28400000');
 })->with([
     [['name' => 'Teste', 'address' => ['public_place' => 'teste', 'number' => 120, 'neighborhood' => 'teste', 'city_id' => 1, 'zipcode' => 28400000], 'document' => ['type' => DocumentTypeEnum::CPF->value, 'document' => '999999']]]

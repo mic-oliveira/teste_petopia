@@ -25,7 +25,7 @@ class Address extends Model
     public function zipcode(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->zipcode ?? $this->city->zipcode
+            get: fn() => $this->attributes['zipcode'] ?? $this->city->zipcode
         );
     }
     public function addressable(): MorphTo

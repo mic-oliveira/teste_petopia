@@ -12,8 +12,6 @@ class DeleteCustomer
     public function handle(int $id): Customer
     {
         $customer = FindCustomer::run($id);
-        $customer->addressable->delete();
-        $customer->document->delete();
         $customer->delete();
         return $customer->refresh();
     }

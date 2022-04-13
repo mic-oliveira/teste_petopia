@@ -18,7 +18,7 @@ test('should delete customer', function ($id) {
 })->with([
     1,2,3
 ])->with([
-    fn() => Customer::factory()->count(3)->has(Address::factory()->for(City::factory(), 'city'),'addressable')->has(Document::factory(), 'document')->create()
+    fn() => Customer::factory()->count(3)->has(Address::factory()->for(City::factory(), 'city'),'addressable')->has(Document::factory(), 'documentation')->create()
 ]);
 
 test('should throw exception when customer already delete', function ($id) {
@@ -27,5 +27,5 @@ test('should throw exception when customer already delete', function ($id) {
 })->with([
     1,2,3
 ])->with([
-    fn() => Customer::factory()->count(3)->has(Address::factory()->for(City::factory(), 'city'),'addressable')->has(Document::factory(), 'document')->create()
+    fn() => Customer::factory()->count(3)->has(Address::factory()->for(City::factory(), 'city'),'addressable')->has(Document::factory(), 'documentation')->create()
 ])->throws(ModelNotFoundException::class);

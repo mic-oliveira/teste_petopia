@@ -13,7 +13,7 @@ class StoreProviderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class StoreProviderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'address' => 'array | required',
+            'address.public_place' => 'required',
+            'address.number' => 'required',
+            'address.neighborhood' => 'required',
+            'address.city_id' => 'required',
+            'document' => 'array | required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'address.public_place' => 'public place',
+            'address.number' => 'number',
+            'address.neighborhood' => 'neighborhood',
+            'address.city_id' => 'city id'
         ];
     }
 }

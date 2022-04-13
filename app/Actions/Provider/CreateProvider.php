@@ -12,7 +12,8 @@ class CreateProvider
     public function handle(array $provider): Provider
     {
         $createdProvider = Provider::create($provider);
-        isset($provider['address']) ? $createdProvider->addresable()->create($provider['address']) : null;
-        return $createdProvider;
+        $createdProvider->addressable()->create($provider['address']);
+        $createdProvider->documentation()->create($provider['document']);
+        return $createdProvider->refresh();
     }
 }

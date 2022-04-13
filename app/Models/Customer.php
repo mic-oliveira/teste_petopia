@@ -26,9 +26,9 @@ class Customer extends Model
         );
     }
 
-    public function document(): HasOne
+    public function documentation(): MorphOne
     {
-        return $this->hasOne(Document::class, 'customer_id');
+        return $this->morphOne(Document::class, 'documentation');
     }
 
     public function addressable(): MorphOne

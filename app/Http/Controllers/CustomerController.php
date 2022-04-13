@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Customer\CreateCustomer;
+use App\Actions\Customer\DeleteCustomer;
+use App\Actions\Customer\FindCustomer;
 use App\Actions\Customer\ListCustomer;
 use App\Actions\Customer\UpdateCustomer;
 use App\Http\Requests\StoreCustomerRequest;
@@ -25,15 +27,9 @@ class CustomerController extends Controller
         return CustomerResource::make(CreateCustomer::run($request->validated()));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return Response
-     */
-    public function show(Customer $customer)
+    public function show(Customer $customer): CustomerResource
     {
-        //
+        return CustomerResource::make(FindCustomer::run($customer->id));
     }
 
     public function update(UpdateCustomerRequest $request, Customer $customer): CustomerResource
@@ -41,14 +37,8 @@ class CustomerController extends Controller
         return CustomerResource::make(UpdateCustomer::run($request->validated(), $customer->id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return Response
-     */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer): CustomerResource
     {
-        //
+        return CustomerResource::make(DeleteCustomer::run($customer->id));
     }
 }

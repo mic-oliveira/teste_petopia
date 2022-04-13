@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Document extends Model
 {
@@ -19,4 +20,9 @@ class Document extends Model
     protected $casts = [
         'type' => DocumentTypeEnum::class
     ];
+
+    public function documentation(): MorphTo
+    {
+        return $this->morphTo('documentation');
+    }
 }
